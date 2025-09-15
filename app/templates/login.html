@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="login-container">
+      <h2>登录</h2>
+      <form method="post">
+        {{ form.hidden_tag() }}
+        <div>{{ form.username.label }} {{ form.username() }}</div>
+        <div>{{ form.password.label }} {{ form.password() }}</div>
+        <div>{{ form.submit() }}</div>
+      </form>
+      <a href="{{ url_for('auth.register') }}">没有账号？注册</a>
+  </div>
+{% endblock %}

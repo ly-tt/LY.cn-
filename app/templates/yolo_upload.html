@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="yolo-wrapper">
+
+    <!-- 左侧：模型类别说明 -->
+    <div class="yolo-description">
+      <h2>YOLOv交通场景目标检测</h2>
+      <p style="color: #666; font-size: 15px;">
+        本系统基于 YOLOv11 模型训练，可精准检测图像中的 12 类交通相关目标：
+      </p>
+      <ol style="font-size: 13px; line-height: 1.6;">
+        <li>自行车（Bicycles）：检测道路上骑行的各类自行车。</li>
+        <li>桥梁（Bridges）：识别图像中的交通桥梁结构。</li>
+        <li>公交车（Buses）：检测城市公共交通中的公交车。</li>
+        <li>烟囱（Chimneys）：识别道路周边的烟囱设施。</li>
+        <li>人行横道（Crosswalks）：检测道路上的斑马线等行人通行区域。</li>
+        <li>消防栓（Fire Hydrants）：识别路边的消防栓设施，保障应急通道畅通。</li>
+        <li>摩托车（Motorcycles）：检测道路上行驶的摩托车。</li>
+        <li>楼梯（Stairs）：识别交通场景中出现的楼梯结构。</li>
+        <li>出租车（Taxis）：检测城市中的出租车。</li>
+        <li>拖拉机（Tractors）：识别道路上行驶的农业或工程用拖拉机。</li>
+        <li>交通信号灯（Traffic Lights）：检测路口的红、黄、绿交通信号灯。</li>
+        <li>车辆（Vehicles）：检测各类机动车，包括轿车、卡车等。</li>
+      </ol>
+    </div>
+
+    <!-- 右侧：上传表单 + 识别结果 -->
+    <div class="yolo-form">
+        <form method="POST" enctype="multipart/form-data">
+          {{ form.csrf_token }}
+          <label style="font-weight: bold;">上传图片或视频进行识别：</label><br><br>
+          {{ form.image() }}<br><br>
+          {{ form.submit() }}
+        </form>
+        <div id="loadingMessage" style="display: none; text-align:center;">
+            <p>上传成功，正在识别中，请稍候...</p>
+        </div>
+
+        {% if result_image %}
+            <hr>
+            <h3>图片识别结果：</h3>
+            <img src="{{ result_image }}" alt="检测结果" style="max-width:100%; border: 1px solid #ccc; padding: 5px;">
+            {% elif result_video %}
+            <hr>
+            <h3>视频识别结果：</h3>
+            <video controls>
+                <source src="{{ result_video }}" type="video/mp4">您的浏览器不支持 video 播放</video>
+        {% endif %}
+    </div>
+  </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

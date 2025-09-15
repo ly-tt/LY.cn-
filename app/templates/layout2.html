@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Welcome - Flask Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="navbar" id="nav">
+    <div class="logo">LYLY.cn</div>
+    <ul id="navbarMenu">
+      <li><a href="{{ url_for('main.index') }}">首页</a></li>
+      <li><a href="{{ url_for('nlp.text') }}">NLP文本情感分析</a></li>
+      <li><a href="{{ url_for('yolo.upload') }}">YOLOv交通场景目标检测</a></li>
+      <li><a href="{{ url_for('speech.upload') }}">语言识别</a></li>
+      <li style="margin-left:auto;">
+        👋 欢迎，{{ current_user.username }}
+        <a href="{{ url_for('auth.logout') }}">
+          <button class="logout">退出登录</button>
+        </a>
+        <a href="{{ url_for('auth.updatepsw') }}">
+  `         <button class="logout">修改密码</button>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-wrapper">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

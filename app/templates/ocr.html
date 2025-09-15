@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="login-container">
+    <h2>OCR 图片文字识别</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.csrf_token }}
+      {{ form.image.label }}<br>
+      {{ form.image() }}<br><br>
+      {{ form.submit() }}
+    </form>
+
+    {% if image_url %}
+      <hr>
+      <h3>原始图片：</h3>
+      <img src="{{ image_url }}" alt="上传图片" style="max-width:100%; border:1px solid #ccc;">
+    {% endif %}
+
+    {% if text_result %}
+      <hr>
+      <h3>识别结果：</h3>
+      <ul>
+        {% for line in text_result %}
+          <li>{{ line }}</li>
+        {% endfor %}
+      </ul>
+      <form method="POST" action="{{ url_for('nlp.from_speech') }}">
+          {{ nlp_form.csrf_token }}
+          <input type="hidden" name="content" value="{{ text_result | join(' ') }}">
+          <button type="submit">分析情感</button>
+        </form>
+
+
+
+    {% endif %}
+  </div>
+{% endblock %}

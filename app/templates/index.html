@@ -1,0 +1,48 @@
+{% extends "layout2.html" if current_user.is_authenticated else "layout.html" %}
+
+{% block content %}
+  <div class="index-container">
+    <h2 style="text-align: center;">欢迎来到 LYLY 平台</h2>
+
+    <div class="button-group">
+
+      {% if current_user.is_authenticated %}
+        <!-- YOLO 上传按钮 -->
+        <form action="{{ url_for('yolo.upload') }}" method="get">
+          <button type="submit" class="action-button">
+            <img src="{{ url_for('static', filename='images/yolo.jpg') }}">
+            <div>YOLOv交通场景目标检测</div>
+          </button>
+        </form>
+
+        <!-- NLP 分析按钮 -->
+        <form action="{{ url_for('nlp.text') }}" method="get">
+          <button type="submit" class="action-button">
+            <img src="{{ url_for('static', filename='images/nlp.png') }}">
+            <div>NLP文本情感分析</div>
+          </button>
+        </form>
+
+        <!-- 语音识别 -->
+        <form action="{{ url_for('speech.upload') }}" method="get">
+          <button type="submit" class="action-button">
+            <img src="{{ url_for('static', filename='images/yuyin.jpg') }}">
+            <div>语音识别</div>
+          </button>
+        </form>
+
+         <!-- 语音识别 -->
+        <form action="{{ url_for('ocr.upload') }}" method="get">
+          <button type="submit" class="action-button">
+            <img src="{{ url_for('static', filename='images/img.png') }}">
+            <div>OCR文字识别</div>
+          </button>
+        </form>
+
+      {% else %}
+        <p style="text-align: center; font-size: 18px;">请先登录以使用所有功能</p>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="yolo-wrapper">
+
+    <!-- 左侧：功能说明 -->
+    <div class="yolo-description">
+      <h2>语音识别功能说明</h2>
+      <p style="color: #666; font-size: 15px;">
+        本系统支持通过上传语音文件，实现语音转文字功能。
+      </p>
+      <ul style="font-size: 13px; line-height: 1.6;">
+        <li>支持语音格式：<strong>WAV、MP3、WEBM</strong></li>
+        <li>推荐使用 <strong>Chrome 或 Edge</strong> 浏览器</li>
+        <li>上传语音后，系统会自动识别语音内容</li>
+        <li>支持中文识别，识别引擎：<strong>Google Speech Recognition</strong></li>
+      </ul>
+    </div>
+
+    <!-- 右侧：上传表单 + 识别结果 -->
+    <div class="yolo-form">
+      <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        {{ form.csrf_token }}
+        <label style="font-weight: bold;">上传语音文件（WAV/MP3）：</label><br><br>
+        {{ form.audio() }}<br><br>
+        {{ form.submit() }}
+      </form>
+
+      <div id="loadingMessage" style="display: none; text-align:center; margin-top: 10px;">
+          <p>上传成功，正在识别中，请稍候...</p>
+      </div>
+
+    {% if result %}
+      <hr>
+      <h3>识别结果：</h3>
+      <p style="font-weight:bold;">{{ result }}</p>
+
+      <form action="{{ url_for('nlp.from_speech') }}" method="POST">
+          {{ nlp_form.csrf_token }}
+          <input type="hidden" name="content" value="{{ result }}">
+          <button type="submit">对识别结果进行情感分析</button>
+        </form>
+    {% endif %}
+
+      {% if audio_url %}
+        <h4>播放语音：</h4>
+        <audio controls>
+          <source src="{{ url_for('static', filename=audio_url) }}" type="audio/{{ audio_url.split('.')[-1] }}">
+          您的浏览器不支持 audio 播放
+        </audio>
+      {% endif %}
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
