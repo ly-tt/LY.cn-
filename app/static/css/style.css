@@ -1,0 +1,305 @@
+/* static/css/style.css */
+
+/* 导航栏样式 */
+.navbar {
+    background-color: aliceblue;
+    color: grey;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 200;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #232c53;
+}
+
+.logout {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar li {
+    position: relative;
+    margin-right: 15px;
+}
+
+.navbar li a {
+    color: #777b91;
+    text-decoration: none;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.navbar li a:hover {
+    color: #141e46;
+}
+
+.search-box {
+    position: relative;
+    margin: 0 10px;
+}
+
+.search-box input {
+    width: 200px;
+    height: 30px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #eff6f8;
+    transition: width 0.3s;
+}
+
+.search-box input:focus {
+    width: 250px;
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons button {
+    margin-left: 10px;
+    padding: 5px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.login {
+    color: #232c53;
+    background-color: #fff;
+    border: 1px solid #232c53;
+}
+
+.login:hover {
+    background-color: #f5f5f5;
+}
+
+.register {
+    color: #fff;
+    background-color: #232c53;
+}
+
+.register:hover {
+    background-color: #1a2240;
+}
+
+
+/* 固定分隔线样式 */
+.divider-top, .divider-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.2em;
+  z-index: 100;
+  background-color: white;
+  padding: 0.5rem 0;
+}
+
+.divider-top {
+  top: 0;
+}
+
+.divider-bottom {
+  bottom: 0;
+}
+
+/* 整体布局 */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+
+    /* 添加背景图片 */
+  background-image: url('../images/login-register.jpg');
+  background-size: cover; /* 覆盖整个页面 */
+  background-position: center; /* 居中显示 */
+  background-repeat: no-repeat; /* 不重复 */
+}
+
+/* 内容区域 */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0; /* 为分隔线留出空间 */
+}
+
+/* 登录表单容器 */
+.login-container {
+  width: 300px;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+}
+
+.login-container h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.login-container form > div {
+  margin-bottom: 1rem;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-container input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0.7rem;
+}
+
+.login-container input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.login-container a {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ 半透明白色容器 */
+.index-container {
+  width: 950px;
+  margin: 100px auto;
+  padding: 5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ✅ 并排按钮区域 */
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* 每个按钮样式 */
+.action-button {
+    background: rgba(200, 200, 200, 0.3);
+    border: 2px solid rgba(200, 200, 200, 0.3);
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    width: 180px;       /* 统一宽度 */
+    height: 220px;      /* 统一高度 */
+}
+
+.action-button img {
+    width: 120px; /* 统一宽度 */
+    height: 120px; /* 统一高度 */
+    object-fit: cover; /* 保持图片比例并填充容器 */
+    display: block;
+    margin: 10px auto;
+    transition: transform 0.3s ease;
+}
+
+.action-button:hover img {
+  transform: scale(1.2);
+}
+
+.action-button div {
+  margin-top: 10px;
+}
+
+.action-button:hover {
+  background: rgba(180, 180, 180, 0.5); /* 悬停时背景透明度降低 */
+  border-color: rgba(120, 120, 120, 0.9); /* 悬停时边框颜色加深 */
+}
+
+.yolo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.yolo-description, .yolo-form {
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 400px;
+}
+
+.yolo-form {
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 600px;
+}
+.yolo-description ol {
+  margin-left: 1.2em;
+  padding-left: 0.5em;
+}
+
+.yolo-form form {
+  text-align: center;
+}
+
+.yolo-form video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
